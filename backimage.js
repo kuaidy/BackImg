@@ -396,10 +396,22 @@ function DownLoad(){
     var date=new Date();
     // console.log(date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+"-"+date.getTime());
     var filename=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+"-"+date.getTime()+"."+pictype;
-    savaImage(imgdata,filename);
-
-
+    
+    if(pictype=="svg"){
+        var ctxsvg=new C2S(canvas.width,canvas.height);
+        var canvasimg=new Image(canvas.width,canvas.height);
+        canvasimg.src=imgdata;
+        ctxsvg.drawImage(canvasimg,0,0);
+        var svgdoc = ctxsvg.getSerializedSvg(true);
+        console.log(svgdoc);
+        // $("#ImageShow").html(svgdoc);
+    }else{
+        savaImage(imgdata,filename);
+    }
 }
+
+
+
 //将图像保存到本地
 function savaImage(data,filename)
 {

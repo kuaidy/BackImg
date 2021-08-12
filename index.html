@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="bgstyle.css">
     <script  type="text/javascript" src="backimage.js"></script>
     <script src="./plugs/minicolor/colorpicker.js"></script>
+    <script src="./plugs/domtoimage/canvas2svg.js"></script>
     <script>
         // 百度统计
         var _hmt = _hmt || [];
@@ -181,7 +182,7 @@
                     <option value="" data-type="png">png</option>
                     <option value="" data-type="jpg">jpg</option>
                     <option value="" data-type="webp">webp</option>
-                    <option value="" data-type="svg">svg</option>
+                    <!-- <option value="" data-type="svg">svg</option> -->
                     <option value="" data-type="gif">gif</option>
                 </select>
             </div>
@@ -204,7 +205,6 @@
                     <img id="ImageBgicon" src="" alt="">
                     <span id="ImageText"></span>
                 </div>
-                
             </div>
         </div>
 
@@ -214,15 +214,11 @@
         <div id="ImageIconColor"></div>
         
         <!-- <div id="ImageDown"></div> -->
-
         <div id="graybackground" contentEditable>
         </div>
-
         <div id="iconurl" ></div>
-
         <div id="colorurl"></div>
     </div>
-
 </body>
 
 <script >
@@ -261,6 +257,5 @@ document.addEventListener("paste", function (e) {
         $("#lb_note").hide();
     }, false);
 });
-
 </script>
 </html>
