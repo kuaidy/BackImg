@@ -1,0 +1,95 @@
+html,body{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    color: white;
+}
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+ul.nav {
+    display: flex;
+    list-style: none;
+}
+.nav li {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+}
+.slogan {
+    font-size: 25px;
+    font-weight: bold;
+    width: 500px;
+}
+.description,.option{
+    width: 500px;
+}
+.editor {
+    display: flex;
+    flex-direction: row;
+    height: 400px;
+}
+.editordesc {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+button.start {
+    width: 100px;
+    border: 0px;
+    padding: 10px;
+    background-color: #409EFF;
+    color: white;
+}
+.editorimage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ul.imageshow {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    width: 100%;
+    padding: 0;
+    margin: auto;
+}
+.imageshow li {
+    width: 23%;
+    margin: 1%;
+}
+img {
+    width: 100%;
+}
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+}
+button{
+    cursor:pointer;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.icon{
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+ }
