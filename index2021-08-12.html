@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BACKIMG-媒体主图快速生成</title>
+    <title>baimage</title>
     <link rel="icon" href="/image/icon/logo.png" type="image/x-icon"/>
     <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
     <script type="text/javascript" src="jquery.min.js"></script>
     <link rel="stylesheet" href="bgstyle.css">
-    <link rel="stylesheet" href="style.css">
     <script  type="text/javascript" src="backimage.js"></script>
     <script src="./plugs/minicolor/colorpicker.js"></script>
-    <script src="./plugs/domtoimage/canvas2svg.js"></script>
     <script>
         // 百度统计
         var _hmt = _hmt || [];
@@ -23,38 +21,17 @@
         s.parentNode.insertBefore(hm, s);
         })();
     </script>
-    <script src="//at.alicdn.com/t/font_2344911_d3anb8ucud.js"></script>
+
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-            <a href="http://backimg.cn/">
-                <svg class="icon" aria-hidden="true">
-                    <use xlink:href="#icon-yinqing_tuceng-copy"></use>
-                </svg>
-                <span style="margin-left:10px;">BACKIMG</span>
-            </a>
-        </DIV>
-        <ul class="nav">
-            <li>
-                <a href="http://backimg.cn/"><span>首页</span></a>
-            </li>
-            <li>
-                <a href="editor.html"><span>编辑</span></a>
-            </li>
-            <li>
-                <a href="https://github.com/kuaidy/BackImg"><span>Github</span></a>
-            </li>
-        </ul>
-    </div>
     <div id="main">
         <!-- 背景图设置 -->
         <div id="GenerateImage">
-            <!-- <div id=header>
+            <div id=header>
                 <span>BGImage</span>
                 <span style="font-size:12px;color:#fff;position: relative;top: -5px;left: 5px;background-color: crimson;padding: 0px 2px;border-radius: 2px;">beta</span>
             </div>
-            <hr /> -->
+            <hr />
             <div id="setwidth" class="setting">
                 <span>背景宽度</span>
                 <input type="text" placeholder="auto" id="bgwidth" class="FormControl"></input>
@@ -198,16 +175,6 @@
                     <option value="" data-width="1280" data-height="720">知乎视频封面</option>
                 </select>
             </div>
-            <div id="PictureType" class="setting">
-                <span>图片格式</span>
-                <select name="" id="ChangePicType">
-                    <option value="" data-type="png">png</option>
-                    <option value="" data-type="jpg">jpg</option>
-                    <option value="" data-type="webp">webp</option>
-                    <!-- <option value="" data-type="svg">svg</option> -->
-                    <option value="" data-type="gif">gif</option>
-                </select>
-            </div>
             <div id="OptionItems" class="setting">
                 <!-- <button id="Generate">随机生成</button> -->
                 <button id="reset" class="Option">重制</button>
@@ -227,6 +194,7 @@
                     <img id="ImageBgicon" src="" alt="">
                     <span id="ImageText"></span>
                 </div>
+                
             </div>
         </div>
 
@@ -236,11 +204,15 @@
         <div id="ImageIconColor"></div>
         
         <!-- <div id="ImageDown"></div> -->
+
         <div id="graybackground" contentEditable>
         </div>
+
         <div id="iconurl" ></div>
+
         <div id="colorurl"></div>
     </div>
+
 </body>
 
 <script >
@@ -279,5 +251,6 @@ document.addEventListener("paste", function (e) {
         $("#lb_note").hide();
     }, false);
 });
+
 </script>
 </html>

@@ -375,6 +375,9 @@ function DownLoad(){
             DrawText(ctx);
     }
 
+
+
+
     if(($("#ip_UseWaterMark").is(":checked"))){
         // 绘制水印
         var WaterMarkText=$(".p_WaterMarkText").text();
@@ -388,30 +391,15 @@ function DownLoad(){
         ctx.fillText(WaterMarkText,width-WaterMarkWith-15, height-WaterMarkHeight);
     }
 
-    //获取选中的图片格式
-    var pictype=$("#ChangePicType").find("option:selected").attr("data-type");
-    var mime="image/"+pictype;
     // document.body.appendChild(canvas);
-    var imgdata=canvas.toDataURL(mime,1);
+    var imgdata=canvas.toDataURL();
     var date=new Date();
     // console.log(date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+"-"+date.getTime());
-    var filename=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+"-"+date.getTime()+"."+pictype;
-    
-    if(pictype=="svg"){
-        var ctxsvg=new C2S(canvas.width,canvas.height);
-        var canvasimg=new Image(canvas.width,canvas.height);
-        canvasimg.src=imgdata;
-        ctxsvg.drawImage(canvasimg,0,0);
-        var svgdoc = ctxsvg.getSerializedSvg(true);
-        console.log(svgdoc);
-        // $("#ImageShow").html(svgdoc);
-    }else{
-        savaImage(imgdata,filename);
-    }
+    var filename=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+"-"+date.getTime()+".png";
+    savaImage(imgdata,filename);
+
+
 }
-
-
-
 //将图像保存到本地
 function savaImage(data,filename)
 {
@@ -848,6 +836,7 @@ function DrawGoogleText(ctx){
     }
 }
 
+
 //绘制圆角矩形
 function DrawRoundRect(cxt, x,y,w, h, r) {
     
@@ -884,7 +873,9 @@ function DrawRoundRect(cxt, x,y,w, h, r) {
     cxt.closePath();
 }
 
+
 //绘制填充的圆角矩形
+
 function DrawFillRoundRect(cxt,x,y,w,h,r,fillcolor)
 {
     if (2 * r > w || 2 * r > h) { return false; }
