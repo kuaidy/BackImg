@@ -186,6 +186,10 @@ $(function(){
     $("#TextStyleType").change(function(){
         SetTextStyle();
     });
+    //图片上传
+    $("#upload").click(function(){
+        UploadImgToHualigs();
+    });
 });
 
 function GenerateColor(){
@@ -310,9 +314,8 @@ function ChangeIconHeight(iconheight){
     var iconheight=$("#bgiconheight").val();
     $("#ImageBgicon").height(iconheight);
 }
-
-//绘制图像
-function DownLoad(){
+//生成图片数据
+function CreateImage(){
     var width=$("#Imageid").width();
     var height=$("#Imageid").height();
     var bgcolor=$("#Imageid").css("background-color");
@@ -387,23 +390,29 @@ function DownLoad(){
         ctx.globalAlpha = 0.4;
         ctx.fillText(WaterMarkText,width-WaterMarkWith-15, height-WaterMarkHeight);
     }
-
-    //获取选中的图片格式
     var pictype=$("#ChangePicType").find("option:selected").attr("data-type");
     var mime="image/"+pictype;
     // document.body.appendChild(canvas);
     var imgdata=canvas.toDataURL(mime,1);
+    return imgdata;
+}
+
+//绘制图像
+function DownLoad(){
+    var imgdata=CreateImage();
+    //获取选中的图片格式
+    var pictype=$("#ChangePicType").find("option:selected").attr("data-type");
+    var mime="image/"+pictype;
     var date=new Date();
     // console.log(date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+"-"+date.getTime());
     var filename=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+"-"+date.getTime()+"."+pictype;
-    
     if(pictype=="svg"){
         var ctxsvg=new C2S(canvas.width,canvas.height);
         var canvasimg=new Image(canvas.width,canvas.height);
         canvasimg.src=imgdata;
         ctxsvg.drawImage(canvasimg,0,0);
         var svgdoc = ctxsvg.getSerializedSvg(true);
-        console.log(svgdoc);
+        // console.log(svgdoc);
         // $("#ImageShow").html(svgdoc);
     }else{
         savaImage(imgdata,filename);
@@ -894,4 +903,35 @@ function DrawFillRoundRect(cxt,x,y,w,h,r,fillcolor)
     cxt.fillStyle = fillcolor || "#000"; //若是给定了值就用给定的值否则给予默认值  
     cxt.fill();
     cxt.restore();
+}
+//使用路过图床的api保存图片 https://www.hualigs.cn/doc/upload
+function UploadImgToHualigs(){
+    let token="9b5febf852d8b9a9ab988c2163c54cd0";
+    let url="https://www.hualigs.cn/api/upload";
+    let imageData=CreateImage();
+    let arr =imageData.split(',')
+    let mime=arr[0].match(/:(.*?);/)[1];
+    console.log(mime);
+    let bStr=atob(arr[1]);
+    let length=bStr.length;
+    let uArr=new Uint8Array(length);
+    while(length--){
+        uArr[length]=bStr.charCodeAt(length);
+    }
+    let file=new File([uArr],"test.png",{type:mime});
+    console.log(file);
+    let form =new FormData();
+    form.append("image",file);
+    form.append("apiType","this");
+    form.append("token",token);
+    $.ajax({
+        type:'post',
+        data:form,
+        url:url,
+        contentType:false,
+        processData:false,
+        success:function(data){
+            console.log(data);
+        }
+    });
 }

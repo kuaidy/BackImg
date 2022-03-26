@@ -214,6 +214,25 @@
                 <button id="download" class="Option">下载</button>
                 <!-- <button>公开</button> -->
             </div>
+            <div id="" class="setting">
+                <span>图床选择</span>
+                <select name="" id="" class="SelectControl">
+                    <option value="gtimg">极图</option>
+                    <option value="ai58">五八</option>
+                    <option value="sougou">搜狗</option>
+                    <option value="bilibili">嘀哩</option>
+                    <option value="toutiao">头条</option>
+                    <option value="huluxia">葫芦</option>
+                    <option value="sina">新浪</option>
+                    <option value="catbox">猫盒</option>
+                    <option value="niupic">牛图	</option>
+                    <option value="baidu">百度</option>
+                    <option value="bcebos">瓣盒</option>
+                </select>
+            </div>
+            <div id="OptionItems" class="setting">
+                <button id="upload" class="Option">上传</button>
+            </div>
             <div id="footer" class="setting">
                 <span><a href="https://support.qq.com/products/42094">意见反馈</a></span>
                 <span>V 2.0.0</span>
@@ -242,42 +261,41 @@
         <div id="colorurl"></div>
     </div>
 </body>
-
 <script >
-//复制粘贴图片
-document.addEventListener("paste", function (e) {
-    var cbd = e.clipboardData;
-    var ua = window.navigator.userAgent;
-    // 如果是 Safari 直接 return
-    if ( !(e.clipboardData && e.clipboardData.items) ) {
-        return;
-    }
-    // Mac平台下Chrome49版本以下 复制Finder中的文件的Bug Hack掉
-    if(cbd.items && cbd.items.length === 2 && cbd.items[0].kind === "string" && cbd.items[1].kind === "file" &&
-        cbd.types && cbd.types.length === 2 && cbd.types[0] === "text/plain" && cbd.types[1] === "Files" &&
-        ua.match(/Macintosh/i) && Number(ua.match(/Chrome\/(\d{2})/i)[1]) < 49){
-        return;
-    }
+    //复制粘贴图片
+    document.addEventListener("paste", function (e) {
+        var cbd = e.clipboardData;
+        var ua = window.navigator.userAgent;
+        // 如果是 Safari 直接 return
+        if ( !(e.clipboardData && e.clipboardData.items) ) {
+            return;
+        }
+        // Mac平台下Chrome49版本以下 复制Finder中的文件的Bug Hack掉
+        if(cbd.items && cbd.items.length === 2 && cbd.items[0].kind === "string" && cbd.items[1].kind === "file" &&
+            cbd.types && cbd.types.length === 2 && cbd.types[0] === "text/plain" && cbd.types[1] === "Files" &&
+            ua.match(/Macintosh/i) && Number(ua.match(/Chrome\/(\d{2})/i)[1]) < 49){
+            return;
+        }
 
-    var blob;
-    for(var i = 0; i < cbd.items.length; i++) {
-        var item = cbd.items[i];
-        if(item.kind == "file"){
-            blob= item.getAsFile();
-            if (blob.size === 0) {
-                return;
+        var blob;
+        for(var i = 0; i < cbd.items.length; i++) {
+            var item = cbd.items[i];
+            if(item.kind == "file"){
+                blob= item.getAsFile();
+                if (blob.size === 0) {
+                    return;
+                }
             }
         }
-    }
-    
-    var reader=new FileReader();
-    // blob 就是从剪切板获得的文件 可以进行上传或其他操作
-    reader.readAsDataURL(blob);
+        
+        var reader=new FileReader();
+        // blob 就是从剪切板获得的文件 可以进行上传或其他操作
+        reader.readAsDataURL(blob);
 
-    reader.addEventListener("load", function () {
-        $('#ImageBgicon').attr("src", reader.result);
-        $("#lb_note").hide();
-    }, false);
-});
+        reader.addEventListener("load", function () {
+            $('#ImageBgicon').attr("src", reader.result);
+            $("#lb_note").hide();
+        }, false);
+    });
 </script>
 </html>
