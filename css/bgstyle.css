@@ -85,6 +85,7 @@ div#ImageDown {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+    background-color: #96b97d;
 }
 .setting{
     display: flex;

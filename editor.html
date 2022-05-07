@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BACKIMG-媒体主图快速生成</title>
     <link rel="icon" href="/image/icon/logo.png" type="image/x-icon"/>
-    <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
-    <script type="text/javascript" src="jquery.min.js"></script>
-    <link rel="stylesheet" href="bgstyle.css">
-    <link rel="stylesheet" href="style.css">
-    <script  type="text/javascript" src="backimage.js"></script>
-    <script src="./plugs/minicolor/colorpicker.js"></script>
-    <script src="./plugs/domtoimage/canvas2svg.js"></script>
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/bgstyle.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script  type="text/javascript" src="./js/init.js"></script>
+    <script  type="text/javascript" src="./js/background.js"></script>
+    <script  type="text/javascript" src="./js/backimage.js"></script>
+    <script  type="text/javascript" src="./js/download.js"></script>
     <script>
         // 百度统计
         var _hmt = _hmt || [];
@@ -69,7 +69,29 @@
                 <!-- <input type="text" id="position-bottom-left" class="demo" data-position="bottom left" value="#0088cc"> -->
                 <!-- <button id="colorpicker">Show Color Picker</button> -->
                 <!-- <input id="cpFocus" value="#8db3e2" /> -->
-                <div class="picker" id="color-picker" class="FormControl" style="width:100px;height:30px;"></div>
+                <!-- <div class="picker" id="color-picker" class="FormControl" style="width:100px;height:30px;"></div> -->
+                <input type="color" id="bgcolor" class="FormControl">
+            </div>
+            <div class="setting">
+                <span>背景图案</span>
+                <select name="" id="SelectPattern" class="SelectControl">
+                    <option>None</option>
+                    <option>graph-paper</option>
+                    <option>jigsaw</option>
+                    <option>hideout</option>
+                    <option>dots</option>
+                    <option>falling-triangles</option>
+                    <option>circuit-board</option>
+                    <option>temple</option>
+                    <option>anchors</option>
+                    <option>brickwall</option>
+                    <option>overlapping-circles</option>
+                    <option>wiggle</option>
+                    <option>tic-tac-toe</option>
+                    <option>leaf</option>
+                    <option>bubbles</option>
+                    <option>squares</option>
+                </select>
             </div>
             <div id="SelectColor" class="setting">
                 <button class="Option">配色推荐</button>
@@ -134,14 +156,14 @@
             </div>
             <div id="setTextColor" class="setting">
                 <span>文字字体</span>
-                <input id="TextFontFamily" type="text" list="typelist" placeholder="请选择" class="FormControl">
-                <datalist id="typelist">
-                　　<option>宋体</option>
-                　　<option>黑体</option>
+                <!-- <input id="TextFontFamily" type="text" list="typelist" placeholder="请选择" class="FormControl"> -->
+                <select id="TextFontFamily" class="SelectControl">
+                    <option>宋体</option>
+                    <option>黑体</option>
                     <option>微软雅黑</option>
                     <option>楷体</option>
                     <option>隶书</option>
-                </datalist>
+                </select>
             </div>
             <div id="setTextStyle" class="setting">
                 <span>文字风格</span>
@@ -184,7 +206,7 @@
             <hr />
             <div id="setbgtype" class="setting">
                 <span>平台选择</span>
-                <select name="" id="ChangeType">
+                <select name="" id="ChangeType" class="SelectControl">
                     <option value="">自定义</option>
                     <option value="" data-width="750" data-height="375">网易大图封面</option>
                     <option value="" data-width="1125" data-height="633">网易视频封面</option>
@@ -200,7 +222,7 @@
             </div>
             <div id="PictureType" class="setting">
                 <span>图片格式</span>
-                <select name="" id="ChangePicType">
+                <select name="" id="ChangePicType" class="SelectControl">
                     <option value="" data-type="png">png</option>
                     <option value="" data-type="jpg">jpg</option>
                     <option value="" data-type="webp">webp</option>
