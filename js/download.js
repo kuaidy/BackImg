@@ -42,11 +42,13 @@ function DownLoad(){
     ctx.shadowBlur = shadowsize; // 模糊尺寸
     ctx.shadowColor = shadowcolor; // 颜色
     
+
     ctx.fillStyle=bgcolor;
     ctx.fillRect(0+recaddsize,0+recaddsize,width,height);
-    ctx.drawImage(img,(width-img.width-spanwidth)/2,(height-img.height)/2,img.width,img.height);
 
     DrawPattern(ctx,recaddsize,width,height);
+
+    ctx.drawImage(img,(width-img.width-spanwidth)/2,(height-img.height)/2,img.width,img.height);
 
     var value=$("#TextStyleType").find("option:selected").attr("value");
     switch(value){
@@ -213,10 +215,12 @@ function DrawText(ctx){
 //绘制背景图案
 function DrawPattern(ctx,recaddsize,width,height){
     var pattern=$("#SelectPattern").val();
-    var url="./image/pattern/"+pattern+".svg";
-    var image = new Image();
-    image.src=url;
-    var pat=ctx.createPattern(image,"repeat");
-    ctx.fillStyle=pat;
-    ctx.fillRect(0+recaddsize,0+recaddsize,width,height);
+    if(pattern!="None"){
+        var url="./image/pattern/"+pattern+".svg";
+        var image = new Image();
+        image.src=url;
+        var pat=ctx.createPattern(image,"repeat");
+        ctx.fillStyle=pat;
+        ctx.fillRect(0+recaddsize,0+recaddsize,width,height);
+    }
 }
